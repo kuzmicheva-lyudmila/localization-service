@@ -1,0 +1,37 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: localizationservice
+  cloud:
+    config:
+      uri: http://localhost:8888
+    bus:
+      enabled: true
+      refresh:
+        enabled: true
+  rabbitmq:
+      host: localhost
+      port: 5672
+      username: guest
+      password: guest
+  data:
+    cassandra:
+      port: 9042
+      contact-points: localhost
+      local-datacenter: datacenter1
+      keyspace-name: localization
+      username: cassandra
+      password: cassandra
+  jpa:
+    show-sql: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,info,metrics
+
+localization:
+  masterLang: en

@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: loaderservice
+  cloud:
+    config:
+      uri: http://localhost:8888
+    bus:
+      enabled: true
+      refresh:
+        enabled: true
+  data:
+    cassandra:
+      port: 9042
+      contact-points: localhost
+      local-datacenter: datacenter1
+      keyspace-name: localization
+      username: cassandra
+      password: cassandra
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,info,metrics
+
+logging:
+  level:
+    root: INFO
