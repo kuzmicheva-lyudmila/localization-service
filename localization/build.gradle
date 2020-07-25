@@ -20,6 +20,8 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.3.0.RELEASE'
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-config', version: '2.2.2.RELEASE'
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-bus-amqp', version: '2.2.2.RELEASE'
+    compile group: 'org.liquibase', name: 'liquibase-core', version: '4.0.0'
+
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
 

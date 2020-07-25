@@ -20,7 +20,7 @@ public class Controller {
 
     private final LexemeService lexemeService;
 
-    @GetMapping("/byId/{id}")
+    @GetMapping("/{id}")
     private Mono<String> getLexemeById(
             @PathVariable String id,
             @RequestParam Locale locale,

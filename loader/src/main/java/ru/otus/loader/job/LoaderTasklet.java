@@ -55,7 +55,7 @@ public class LoaderTasklet implements Tasklet, StepExecutionListener {
         Long actualVersion = versionRepository.findActualVersion().getValue();
         Long newVersion = translationProperties.getVersion();
 
-        if (newVersion != null && newVersion > actualVersion) {
+        if (newVersion != null && newVersion > actualVersion || actualVersion == null) {
             saveLexemeDescriptions();
             saveLexemeTranslations(newVersion);
             updateVersion(newVersion);
@@ -77,25 +77,27 @@ public class LoaderTasklet implements Tasklet, StepExecutionListener {
 
         if (translations != null && translations.size() > 0) {
             List<Lexeme> lexemes = translations.stream()
-                    .map(
-                            lexemeTranslation -> {
-                                Lexeme lexeme = new Lexeme();
-
-                                lexeme.setVersion(version);
-                                lexeme.setId(lexemeTranslation.getLexeme());
-
-                                Map<String, String> translationMap = lexemeTranslation.getTranslations()
-                                        .stream()
-                                        .collect(Collectors.toMap(Translation::getLang, Translation::getDescribe));
-                                lexeme.setTranslations(translationMap);
-
-                                return lexeme;
-                            }
-                    )
+                    .map(lexemeTranslation -> getLexeme(version, lexemeTranslation))
                     .collect(Collectors.toList());
 
             lexemeRepository.saveAll(lexemes);
         }
+    }
+
+    private Lexeme getLexeme(Long version, LexemeTranslation lexemeTranslation) {
+        Lexeme lexeme = new Lexeme();
+
+        lexeme.setVersion(version);
+        lexeme.setId(lexemeTranslation.getLexeme());
+        lexeme.setTranslations(getTranslationMap(lexemeTranslation));
+
+        return lexeme;
+    }
+
+    private Map<String, String> getTranslationMap(LexemeTranslation lexemeTranslation) {
+        return lexemeTranslation.getTranslations()
+                    .stream()
+                    .collect(Collectors.toMap(Translation::getLang, Translation::getDescribe));
     }
 
     private void updateVersion(Long version) {
