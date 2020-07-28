@@ -7,6 +7,8 @@ plugins {
 group 'ru.otus'
 version '0.0.1-SNAPSHOT'
 
+sourceCompatibility = 1.11
+
 repositories {
     mavenCentral()
 }
@@ -25,5 +27,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
-    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.2.6.RELEASE'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.3.0.RELEASE'
+    testCompile 'org.junit.jupiter:junit-jupiter:5.4.0'
+    testCompile group: 'io.projectreactor', name: 'reactor-test', version: '3.3.8.RELEASE'
 }

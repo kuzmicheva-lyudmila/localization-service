@@ -1,3 +1,3 @@
 databaseChangeLog:
   - include:
-      file: migrations/001-initSchema.sql
+      file: db/migrations/001-initSchema.sql
