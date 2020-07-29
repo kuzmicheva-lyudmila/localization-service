@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeset user:1
+--changeset kl:1
 create table if not exists localization.version (
     id text primary key,
     value bigint

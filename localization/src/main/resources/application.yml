@@ -16,10 +16,6 @@ spring:
       port: 5672
       username: guest
       password: guest
-  datasource:
-    url: jdbc:cassandra://localhost:9042/localization;DefaultKeySpace=localization
-    username: cassandra
-    password: cassandra
   liquibase:
     change-log: classpath:/db/changelog/db.changelog-master.yaml
     enabled: true
