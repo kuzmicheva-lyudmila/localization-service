@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+}
+
+group 'ru.otus'
+version '0.0.1-SNAPSHOT'
+
+sourceCompatibility = 1.11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':model')
+
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.3.0.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-cassandra-reactive', version: '2.3.0.RELEASE'
+    compile group: 'com.datastax.oss', name: 'java-driver-core', version: '4.7.2'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.3.0.RELEASE'
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-config', version: '2.2.2.RELEASE'
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-bus-amqp', version: '2.2.2.RELEASE'
+    compile group: 'org.liquibase', name: 'liquibase-core', version: '4.0.0'
+
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.3.0.RELEASE'
+    testCompile 'org.junit.jupiter:junit-jupiter:5.4.0'
+    testCompile group: 'io.projectreactor', name: 'reactor-test', version: '3.3.8.RELEASE'
+}
